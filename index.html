@@ -1,0 +1,1547 @@
+<!doctype html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width,initial-scale=1" />
+      <title>Microsoft SharePoint & Dynamics 365 — BD Pitch Cheat Sheet</title>
+      <style>
+         :root {
+            --ink: #1c2733;
+            --soft: #4a5768;
+            --paper: #eeebe3;
+            --card: #fbfaf7;
+            --navy: #1d3557;
+            --deep: #12233d;
+            --gold: #a9762f;
+            --goldsoft: #e7d9be;
+            --line: #d9d3c6;
+            --green: #2f6b4f;
+            --greensoft: #ddebe2;
+            --orange: #a85d24;
+            --orangesoft: #f1dfd0;
+            --bluesoft: #dce6f2;
+            --r: 3px;
+         }
+         * {
+            box-sizing: border-box;
+         }
+         body {
+            margin: 0;
+            background: var(--paper);
+            color: var(--ink);
+            font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+            line-height: 1.5;
+         }
+         .wrap {
+            max-width: 1100px;
+            margin: auto;
+            padding: 48px 28px 70px;
+         }
+         header {
+            border-bottom: 2px solid var(--navy);
+            padding-bottom: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 24px;
+            flex-wrap: wrap;
+         }
+         .eyebrow,
+         .cat,
+         .label,
+         .badge,
+         #search,
+         .count,
+         .howto,
+         footer {
+            font-family: Arial, sans-serif;
+         }
+         .eyebrow {
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            font-size: 11px;
+            color: var(--gold);
+            font-weight: 700;
+            margin: 0 0 10px;
+         }
+         h1 {
+            font-size: 34px;
+            margin: 0 0 8px;
+            color: var(--deep);
+            font-weight: 600;
+         }
+         .subhead {
+            font-family: Arial, sans-serif;
+            color: var(--soft);
+            font-size: 14.5px;
+            max-width: 680px;
+         }
+         .howto {
+            font-size: 12.5px;
+            color: var(--soft);
+            text-align: right;
+         }
+         .legend {
+            margin: 22px 0;
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            align-items: center;
+            font: 12px Arial;
+            color: var(--soft);
+         }
+         .toolbar {
+            margin: 26px 0 22px;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            flex-wrap: wrap;
+         }
+         #search {
+            font-size: 14px;
+            padding: 11px 14px;
+            border: 1px solid var(--line);
+            border-radius: var(--r);
+            background: var(--card);
+            width: 100%;
+            max-width: 560px;
+         }
+         .count {
+            font-size: 12px;
+            color: var(--soft);
+         }
+         .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+         }
+         .card {
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-left: 4px solid var(--navy);
+            border-radius: var(--r);
+            padding: 20px 22px;
+         }
+         .card.hidden {
+            display: none;
+         }
+         .card-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+         }
+         .cat {
+            font-size: 10.5px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--gold);
+            font-weight: 700;
+            margin: 0;
+         }
+         .badge {
+            font-size: 9.5px;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            font-weight: 700;
+            padding: 4px 7px;
+            border-radius: 3px;
+            white-space: nowrap;
+         }
+         .aligned {
+            background: var(--greensoft);
+            color: var(--green);
+         }
+         .common {
+            background: var(--bluesoft);
+            color: var(--navy);
+         }
+         .trending {
+            background: var(--orangesoft);
+            color: var(--orange);
+         }
+         h2 {
+            font-size: 18px;
+            margin: 0 0 13px;
+            color: var(--deep);
+            font-weight: 600;
+            line-height: 1.3;
+         }
+         .block {
+            margin-bottom: 13px;
+         }
+         .block:last-child {
+            margin-bottom: 0;
+         }
+         .label {
+            font-size: 10.5px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--soft);
+            margin: 0 0 5px;
+            font-weight: 600;
+         }
+         .trigger {
+            font-style: italic;
+            color: var(--soft);
+            font-size: 14px;
+            margin: 0;
+         }
+         .pitch {
+            background: var(--goldsoft);
+            border-radius: var(--r);
+            padding: 11px 13px;
+            font-size: 15px;
+            color: var(--deep);
+            font-weight: 600;
+            margin: 0;
+         }
+         .probe {
+            font: 13.5px Arial;
+            color: var(--soft);
+            margin: 0;
+         }
+         footer {
+            margin-top: 42px;
+            padding-top: 18px;
+            border-top: 1px solid var(--line);
+            font-size: 11.5px;
+            color: var(--soft);
+         }
+         @media (max-width: 760px) {
+            .grid {
+               grid-template-columns: 1fr;
+            }
+         }
+         @media print {
+            body {
+               background: #fff;
+            }
+            .toolbar {
+               display: none;
+            }
+            .wrap {
+               padding: 18px;
+            }
+            .grid {
+               grid-template-columns: 1fr 1fr;
+               gap: 9px;
+            }
+            .card {
+               break-inside: avoid;
+               padding: 13px 15px;
+            }
+            h2 {
+               font-size: 14.5px;
+            }
+            .pitch {
+               font-size: 12.5px;
+               padding: 7px 9px;
+            }
+            .trigger {
+               font-size: 12px;
+            }
+            .probe {
+               font-size: 11.5px;
+            }
+         }
+      </style>
+   </head>
+   <body>
+      <div class="wrap">
+         <header>
+            <div>
+               <p class="eyebrow">Business Development · Quick Reference</p>
+               <h1>Microsoft SharePoint & Dynamics 365 Pitch Cheat Sheet</h1>
+               <p class="subhead">                  
+               </p>
+            </div>
+            <div class="howto">
+               
+            </div>
+         </header>
+         <div class="legend">
+            <span>Badge:</span><span class="badge aligned">#</span>
+			<span>Supported by capability profile</span
+            ><span class="badge common">COMMON</span
+            ><span>Natural adjacent opportunity</span
+            ><span class="badge trending">TRENDING</span
+            ><span>Newer area — qualify first</span>
+         </div>
+         <div class="toolbar">
+            <input
+               id="search"
+               placeholder='Search "CRM", "SharePoint", "Power Apps", "documents", "AI", "ERP"…'
+               oninput="filterCards()"
+            /><span id="count" class="count">40 cards</span>
+         </div>
+         <div id="grid" class="grid">
+            <div
+               class="card"
+               data-text="sharepoint employee corporate portal intranet policies announcements"
+            >
+               <div class="card-top">
+                  <p class="cat">SharePoint Portal</p>
+                  <span class="badge aligned">#</span>
+               </div>
+               <h2>Employee / corporate portal</h2>
+               <div class="block">
+                  <p class="label">They might say</p>
+                  <p class="trigger">
+                     "Our employees have to visit different places to find
+                     policies, announcements and important information."
+                  </p>
+               </div>
+               <div class="block">
+                  <p class="label">Pitch line</p>
+                  <p class="pitch">
+                     "We can build a centralized SharePoint portal where
+                     employees can access company information, links, policies,
+                     announcements and department content in one place."
+                  </p>
+               </div>
+               <div class="block">
+                  <p class="label">Ask them</p>
+                  <p class="probe">
+                     How do employees currently access company policies,
+                     announcements and internal information?
+                  </p>
+               </div>
+            </div>
+            <div
+               class="card"
+               data-text="sharepoint dashboard management department kpi"
+            >
+               <div class="card-top">
+                  <p class="cat">SharePoint Dashboard</p>
+                  <span class="badge aligned">#</span>
+               </div>
+               <h2>Management or department dashboards</h2>
+               <div class="block">
+                  <p class="label">They might say</p>
+                  <p class="trigger">
+                     "Management wants a single place to see important business
+                     information."
+                  </p>
+               </div>
+               <div class="block">
+                  <p class="label">Pitch line</p>
+                  <p class="pitch">
+                     "We can create SharePoint dashboards that bring important
+                     business information and KPIs into a practical management
+                     view."
+                  </p>
+               </div>
+               <div class="block">
+                  <p class="label">Ask them</p>
+                  <p class="probe">
+                     What information does management currently collect manually
+                     for its regular reviews?
+                  </p>
+               </div>
+            </div>
+            <div
+               class="card"
+               data-text="sharepoint dynamic personalized user content"
+            >
+               <div class="card-top">
+                  <p class="cat">Dynamic SharePoint</p>
+                  <span class="badge aligned">#</span>
+               </div>
+               <h2>Personalized SharePoint content</h2>
+               <div class="block">
+                  <p class="label">They might say</p>
+                  <p class="trigger">
+                     "Everyone sees the same SharePoint page even though
+                     different users need different information."
+                  </p>
+               </div>
+               <div class="block">
+                  <p class="label">Pitch line</p>
+                  <p class="pitch">
+                     "We can create dynamic SharePoint experiences that show
+                     relevant content based on the user or business context."
+                  </p>
+               </div>
+               <div class="block">
+                  <p class="label">Ask them</p>
+                  <p class="probe">
+                     Do different departments or user groups need different
+                     information from the portal?
+                  </p>
+               </div>
+            </div>
+            <div class="card" data-text="spfx web parts custom components">
+               <div class="card-top">
+                  <p class="cat">SPFx Web Parts</p>
+                  <span class="badge aligned">#</span>
+               </div>
+               <h2>Custom SharePoint functionality</h2>
+               <div class="block">
+                  <p class="label">They might say</p>
+                  <p class="trigger">
+                     "Standard SharePoint components don&#x27;t give us the
+                     functionality our business needs."
+                  </p>
+               </div>
+               <div class="block">
+                  <p class="label">Pitch line</p>
+                  <p class="pitch">
+                     "We can develop custom SharePoint Framework web parts and
+                     UI components around your specific business process."
+                  </p>
+               </div>
+               <div class="block">
+                  <p class="label">Ask them</p>
+                  <p class="probe">
+                     What business functionality is missing from your current
+                     SharePoint pages?
+                  </p>
+               </div>
+            </div>
+            <div
+               class="card"
+               data-text="sharepoint document management libraries metadata version control"
+            >
+               <div class="card-top">
+                  <p class="cat">Document Management</p>
+                  <span class="badge aligned">#</span>
+               </div>
+               <h2>Centralized document management</h2>
+               <div class="block">
+                  <p class="label">They might say</p>
+                  <p class="trigger">
+                     "Our documents are spread across folders and people
+                     struggle to find the latest version."
+                  </p>
+               </div>
+               <div class="block">
+                  <p class="label">Pitch line</p>
+                  <p class="pitch">
+                     "We can organize documents in SharePoint using structured
+                     libraries, metadata, version control and access
+                     management."
+                  </p>
+               </div>
+               <div class="block">
+                  <p class="label">Ask them</p>
+                  <p class="probe">
+                     Where are business documents currently stored and how do
+                     users find the latest version?
+                  </p>
+               </div>
+            </div>
+            <div
+               class="card"
+               data-text="sharepoint approvals document workflow power automate"
+            >
+               <div class="card-top">
+                  <p class="cat">Document Approvals</p>
+                  <span class="badge aligned">#</span>
+               </div>
+               <h2>Automating document approvals</h2>
+               <div class="block">
+                  <p class="label">They might say</p>
+                  <p class="trigger">
+                     "Documents are sent around by email for approval and we
+                     don&#x27;t know their status."
+                  </p>
+               </div>
+               <div class="block">
+                  <p class="label">Pitch line</p>
+                  <p class="pitch">
+                     "We can automate document approval processes so requests go
+                     to the right people and approval status is easier to
+                     track."
+                  </p>
+               </div>
+               <div class="block">
+                  <p class="label">Ask them</p>
+                  <p class="probe">
+                     Which documents currently require manual approval?
+                  </p>
+               </div>
+            </div>
+            <div
+               class="card"
+               data-text="contracts sharepoint dynamics documents customer"
+            >
+               <div class="card-top">
+                  <p class="cat">Contract Management</p>
+                  <span class="badge aligned">#</span>
+               </div>
+               <h2>Managing customer contracts and documents</h2>
+               <div class="block">
+                  <p class="label">They might say</p>
+                  <p class="trigger">
+                     "Customer contracts are stored separately from customer
+                     information."
+                  </p>
+               </div>
+               <div class="block">
+                  <p class="label">Pitch line</p>
+                  <p class="pitch">
+                     "We can combine Dynamics 365 customer records with
+                     SharePoint document management so contracts and supporting
+                     files are easier to access and control."
+                  </p>
+               </div>
+               <div class="block">
+                  <p class="label">Ask them</p>
+                  <p class="probe">
+                     How are customer contracts currently stored and linked to
+                     customer records?
+                  </p>
+               </div>
+            </div>
+            <div
+               class="card"
+               data-text="sharepoint security access permissions roles"
+            >
+               <div class="card-top">
+                  <p class="cat">Access Management</p>
+                  <span class="badge aligned">#</span>
+               </div>
+               <h2>Controlling access to documents and business information</h2>
+               <div class="block">
+                  <p class="label">They might say</p>
+                  <p class="trigger">
+                     "Some employees should see documents that others should
+                     not."
+                  </p>
+               </div>
+               <div class="block">
+                  <p class="label">Pitch line</p>
+                  <p class="pitch">
+                     "We can structure SharePoint and Microsoft business
+                     application access around departments, roles and business
+                     requirements."
+                  </p>
+               </div>
+               <div class="block">
+                  <p class="label">Ask them</p>
+                  <p class="probe">
+                     Do different departments or roles require different
+                     document access?
+                  </p>
+               </div>
+            </div>
+            <div
+               class="card"
+               data-text="sharepoint search application documents information"
+            >
+               <div class="card-top">
+                  <p class="cat">Search</p>
+                  <span class="badge aligned">#</span>
+               </div>
+               <h2>Business search application</h2>
+               <div class="block">
+                  <p class="label">They might say</p>
+                  <p class="trigger">
+                     "Our users know the information exists but cannot find it
+                     quickly."
+                  </p>
+               </div>
+               <div class="block">
+                  <p class="label">Pitch line</p>
+                  <p class="pitch">
+                     "We can build or customize SharePoint search experiences to
+                     make important business information easier to locate."
+                  </p>
+               </div>
+               <div class="block">
+                  <p class="label">Ask them</p>
+                  <p class="probe">
+                     What information do employees have the most difficulty
+                     finding?
+                  </p>
+               </div>
+            </div>
+            <div class="card" data-text="sharepoint forms power apps requests">
+               <div class="card-top">
+                  <p class="cat">Business Forms</p>
+                  <span class="badge aligned">#</span>
+               </div>
+               <h2>Custom business forms</h2>
+               <div class="block">
+                  <p class="label">They might say</p>
+                  <p class="trigger">
+                     "Employees still use emails or spreadsheets to submit
+                     internal requests."
+                  </p>
+               </div>
+               <div class="block">
+                  <p class="label">Pitch line</p>
+                  <p class="pitch">
+                     "We can build business forms and applications that capture
+                     structured information and route it through the right
+                     process."
+                  </p>
+               </div>
+               <div class="block">
+                  <p class="label">Ask them</p>
+                  <p class="probe">
+                     Which requests are still handled through email, Excel or
+                     paper?
+                  </p>
+               </div>
+            </div>
+            <div class="card" data-text="dynamics 365 sales crm implementation">
+               <div class="card-top">
+                  <p class="cat">Dynamics CRM</p>
+                  <span class="badge aligned">#</span>
+               </div>
+               <h2>Implementing or customizing Dynamics 365 Sales</h2>
+               <div class="block">
+                  <p class="label">They might say</p>
+                  <p class="trigger">
+                     "We need a better way to manage customers, leads and sales
+                     opportunities."
+                  </p>
+               </div>
+               <div class="block">
+                  <p class="label">Pitch line</p>
+                  <p class="pitch">
+                     "We can configure and customize Dynamics 365 Sales around
+                     your actual sales process instead of using CRM only as a
+                     customer database."
+                  </p>
+               </div>
+               <div class="block">
+                  <p class="label">Ask them</p>
+                  <p class="probe">
+                     How are customers, leads and opportunities managed today?
+                  </p>
+               </div>
+            </div>
+            <div
+               class="card"
+               data-text="dynamics customer management accounts contacts"
+            >
+               <div class="card-top">
+                  <p class="cat">Customer Management</p>
+                  <span class="badge aligned">#</span>
+               </div>
+               <h2>Centralizing customer information</h2>
+               <div class="block">
+                  <p class="label">They might say</p>
+                  <p class="trigger">
+                     "Customer information is spread across spreadsheets and
+                     different systems."
+                  </p>
+               </div>
+               <div class="block">
+                  <p class="label">Pitch line</p>
+                  <p class="pitch">
+                     "We can structure Dynamics 365 around accounts, contacts,
+                     activities and related business information to give teams a
+                     consistent customer view."
+                  </p>
+               </div>
+               <div class="block">
+                  <p class="label">Ask them</p>
+                  <p class="probe">
+                     Where do salespeople currently maintain customer
+                     information?
+                  </p>
+               </div>
+            </div>
+            <div class="card" data-text="dynamics leads qualification sales">
+               <div class="card-top">
+                  <p class="cat">Lead Management</p>
+                  <span class="badge aligned">#</span>
+               </div>
+               <h2>Improving lead management</h2>
+               <div class="block">
+                  <p class="label">They might say</p>
+                  <p class="trigger">
+                     "Leads are coming from different places and salespeople are
+                     handling them differently."
+                  </p>
+               </div>
+               <div class="block">
+                  <p class="label">Pitch line</p>
+                  <p class="pitch">
+                     "We can configure Dynamics 365 to support a consistent lead
+                     capture, qualification and follow-up process."
+                  </p>
+               </div>
+               <div class="block">
+                  <p class="label">Ask them</p>
+                  <p class="probe">
+                     Where do your leads come from and how are they assigned
+                     today?
+                  </p>
+               </div>
+            </div>
+            <div
+               class="card"
+               data-text="dynamics opportunities pipeline forecasting"
+            >
+               <div class="card-top">
+                  <p class="cat">Opportunity Management</p>
+                  <span class="badge aligned">#</span>
+               </div>
+               <h2>Improving opportunity and pipeline management</h2>
+               <div class="block">
+                  <p class="label">They might say</p>
+                  <p class="trigger">
+                     "Managers don&#x27;t have reliable visibility into our
+                     sales pipeline."
+                  </p>
+               </div>
+               <div class="block">
+                  <p class="label">Pitch line</p>
+                  <p class="pitch">
+                     "We can customize Dynamics 365 opportunity management and
+                     reporting around your sales stages and business process."
+                  </p>
+               </div>
+               <div class="block">
+                  <p class="label">Ask them</p>
+                  <p class="probe">
+                     How do managers currently review pipeline and forecast
+                     sales?
+                  </p>
+               </div>
+            </div>
+            <div
+               class="card"
+               data-text="dynamics activities calls meetings followups"
+            >
+               <div class="card-top">
+                  <p class="cat">Activities</p>
+                  <span class="badge aligned">#</span>
+               </div>
+               <h2>Tracking customer activities and follow-ups</h2>
+               <div class="block">
+                  <p class="label">They might say</p>
+                  <p class="trigger">
+                     "Customer calls, emails and follow-ups are difficult to
+                     track consistently."
+                  </p>
+               </div>
+               <div class="block">
+                  <p class="label">Pitch line</p>
+                  <p class="pitch">
+                     "We can configure Dynamics 365 activity management so
+                     important customer interactions and follow-ups are easier
+                     to track."
+                  </p>
+               </div>
+               <div class="block">
+                  <p class="label">Ask them</p>
+                  <p class="probe">
+                     How are calls, meetings and customer follow-ups recorded
+                     today?
+                  </p>
+               </div>
+            </div>
+            <div class="card" data-text="dynamics products quotes orders">
+               <div class="card-top">
+                  <p class="cat">Products &amp; Quotes</p>
+                  <span class="badge aligned">#</span>
+               </div>
+               <h2>Managing products, quotes and orders</h2>
+               <div class="block">
+                  <p class="label">They might say</p>
+                  <p class="trigger">
+                     "Our sales team has difficulty keeping products, quotes and
+                     orders aligned with customer opportunities."
+                  </p>
+               </div>
+               <div class="block">
+                  <p class="label">Pitch line</p>
+                  <p class="pitch">
+                     "We can configure the Dynamics 365 data model and sales
+                     process around products, quotes and orders."
+                  </p>
+               </div>
+               <div class="block">
+                  <p class="label">Ask them</p>
+                  <p class="probe">
+                     How are products, quotes and orders connected to your sales
+                     process?
+                  </p>
+               </div>
+            </div>
+            <div
+               class="card"
+               data-text="dynamics cases customer service issues"
+            >
+               <div class="card-top">
+                  <p class="cat">Cases</p>
+                  <span class="badge aligned">#</span>
+               </div>
+               <h2>Managing customer cases</h2>
+               <div class="block">
+                  <p class="label">They might say</p>
+                  <p class="trigger">
+                     "Customer issues are tracked in email or spreadsheets and
+                     can be missed."
+                  </p>
+               </div>
+               <div class="block">
+                  <p class="label">Pitch line</p>
+                  <p class="pitch">
+                     "We can structure Dynamics 365 case processes so customer
+                     issues can be tracked, assigned and managed consistently."
+                  </p>
+               </div>
+               <div class="block">
+                  <p class="label">Ask them</p>
+                  <p class="probe">
+                     How are customer complaints or service requests currently
+                     tracked?
+                  </p>
+               </div>
+            </div>
+            <div
+               class="card"
+               data-text="dataverse tables relationships data model"
+            >
+               <div class="card-top">
+                  <p class="cat">Dataverse Model</p>
+                  <span class="badge aligned">#</span>
+               </div>
+               <h2>Designing a clean CRM data model</h2>
+               <div class="block">
+                  <p class="label">They might say</p>
+                  <p class="trigger">
+                     "We&#x27;ve created too many custom tables and now our CRM
+                     is difficult to maintain."
+                  </p>
+               </div>
+               <div class="block">
+                  <p class="label">Pitch line</p>
+                  <p class="pitch">
+                     "We can review the Dataverse model and use or extend
+                     standard Dynamics tables where appropriate to keep the CRM
+                     clean and scalable."
+                  </p>
+               </div>
+               <div class="block">
+                  <p class="label">Ask them</p>
+                  <p class="probe">
+                     Are you creating duplicate customer or business records to
+                     support new requirements?
+                  </p>
+               </div>
+            </div>
+            <div class="card" data-text="dynamics forms fields customization">
+               <div class="card-top">
+                  <p class="cat">CRM Forms</p>
+                  <span class="badge aligned">#</span>
+               </div>
+               <h2>Customizing CRM forms</h2>
+               <div class="block">
+                  <p class="label">They might say</p>
+                  <p class="trigger">
+                     "Our CRM screens don&#x27;t match how different teams
+                     actually work."
+                  </p>
+               </div>
+               <div class="block">
+                  <p class="label">Pitch line</p>
+                  <p class="pitch">
+                     "We can customize Dynamics 365 forms, sections and fields
+                     around the information each business role needs."
+                  </p>
+               </div>
+               <div class="block">
+                  <p class="label">Ask them</p>
+                  <p class="probe">
+                     Do different teams need different information when working
+                     with the same customer record?
+                  </p>
+               </div>
+            </div>
+            <div
+               class="card"
+               data-text="dynamics views filtered operational management"
+            >
+               <div class="card-top">
+                  <p class="cat">CRM Views</p>
+                  <span class="badge aligned">#</span>
+               </div>
+               <h2>Creating business-specific CRM views</h2>
+               <div class="block">
+                  <p class="label">They might say</p>
+                  <p class="trigger">
+                     "Users spend too much time filtering records to find what
+                     they need."
+                  </p>
+               </div>
+               <div class="block">
+                  <p class="label">Pitch line</p>
+                  <p class="pitch">
+                     "We can create business-specific and role-based Dynamics
+                     365 views for operational and management use."
+                  </p>
+               </div>
+               <div class="block">
+                  <p class="label">Ask them</p>
+                  <p class="probe">
+                     Which records or lists do users repeatedly filter manually?
+                  </p>
+               </div>
+            </div>
+            <div class="card" data-text="dynamics security roles permissions">
+               <div class="card-top">
+                  <p class="cat">Security Roles</p>
+                  <span class="badge aligned">#</span>
+               </div>
+               <h2>Role-based Dynamics 365 access</h2>
+               <div class="block">
+                  <p class="label">They might say</p>
+                  <p class="trigger">
+                     "Everyone shouldn&#x27;t have access to the same CRM
+                     information."
+                  </p>
+               </div>
+               <div class="block">
+                  <p class="label">Pitch line</p>
+                  <p class="pitch">
+                     "We can configure Dynamics 365 security roles and access
+                     around your organizational responsibilities."
+                  </p>
+               </div>
+               <div class="block">
+                  <p class="label">Ask them</p>
+                  <p class="probe">
+                     Do salespeople, managers, operations and administrators
+                     need different access?
+                  </p>
+               </div>
+            </div>
+            <div
+               class="card"
+               data-text="dynamics environments dev uat production"
+            >
+               <div class="card-top">
+                  <p class="cat">Environment Management</p>
+                  <span class="badge aligned">#</span>
+               </div>
+               <h2>Managing Dev, UAT and Production</h2>
+               <div class="block">
+                  <p class="label">They might say</p>
+                  <p class="trigger">
+                     "Developers are making changes directly in the live CRM."
+                  </p>
+               </div>
+               <div class="block">
+                  <p class="label">Pitch line</p>
+                  <p class="pitch">
+                     "We can establish a structured Development, UAT and
+                     Production environment approach for controlled changes and
+                     validation."
+                  </p>
+               </div>
+               <div class="block">
+                  <p class="label">Ask them</p>
+                  <p class="probe">
+                     Do you have separate environments for development, testing
+                     and production?
+                  </p>
+               </div>
+            </div>
+            <div
+               class="card"
+               data-text="dynamics solutions deployment versioning dependencies"
+            >
+               <div class="card-top">
+                  <p class="cat">Solution Deployment</p>
+                  <span class="badge aligned">#</span>
+               </div>
+               <h2>Controlled Dynamics 365 deployments</h2>
+               <div class="block">
+                  <p class="label">They might say</p>
+                  <p class="trigger">
+                     "Moving CRM changes between environments is risky and
+                     difficult to track."
+                  </p>
+               </div>
+               <div class="block">
+                  <p class="label">Pitch line</p>
+                  <p class="pitch">
+                     "We can support solution-based deployment, versioning,
+                     dependency management and validation between Dynamics
+                     environments."
+                  </p>
+               </div>
+               <div class="block">
+                  <p class="label">Ask them</p>
+                  <p class="probe">
+                     How do you currently move Dynamics changes from development
+                     to production?
+                  </p>
+               </div>
+            </div>
+            <div
+               class="card"
+               data-text="business central app extensions deployment"
+            >
+               <div class="card-top">
+                  <p class="cat">Business Central</p>
+                  <span class="badge aligned">#</span>
+               </div>
+               <h2>Business Central extension deployment</h2>
+               <div class="block">
+                  <p class="label">They might say</p>
+                  <p class="trigger">
+                     "We use Business Central and need help deploying or
+                     validating extensions."
+                  </p>
+               </div>
+               <div class="block">
+                  <p class="label">Pitch line</p>
+                  <p class="pitch">
+                     "We can support Business Central .app extension deployment
+                     across UAT and Production, including installation and
+                     version validation."
+                  </p>
+               </div>
+               <div class="block">
+                  <p class="label">Ask them</p>
+                  <p class="probe">
+                     Do you have Business Central extensions that need regular
+                     deployment or validation?
+                  </p>
+               </div>
+            </div>
+            <div
+               class="card"
+               data-text="power apps business applications mobile data entry"
+            >
+               <div class="card-top">
+                  <p class="cat">Power Apps</p>
+                  <span class="badge aligned">#</span>
+               </div>
+               <h2>Building custom business applications</h2>
+               <div class="block">
+                  <p class="label">They might say</p>
+                  <p class="trigger">
+                     "We need a simple business application, but a full custom
+                     system would take too long."
+                  </p>
+               </div>
+               <div class="block">
+                  <p class="label">Pitch line</p>
+                  <p class="pitch">
+                     "We can build Power Apps for department processes, data
+                     entry, CRM extensions and mobile-friendly business
+                     applications."
+                  </p>
+               </div>
+               <div class="block">
+                  <p class="label">Ask them</p>
+                  <p class="probe">
+                     Which internal process currently relies on spreadsheets or
+                     manual data entry?
+                  </p>
+               </div>
+            </div>
+            <div
+               class="card"
+               data-text="power automate workflows approvals notifications automation"
+            >
+               <div class="card-top">
+                  <p class="cat">Power Automate</p>
+                  <span class="badge aligned">#</span>
+               </div>
+               <h2>Automating manual business processes</h2>
+               <div class="block">
+                  <p class="label">They might say</p>
+                  <p class="trigger">
+                     "Employees repeatedly perform the same approval,
+                     notification or data movement tasks."
+                  </p>
+               </div>
+               <div class="block">
+                  <p class="label">Pitch line</p>
+                  <p class="pitch">
+                     "We can automate business processes with Power Automate,
+                     including approvals, notifications, document workflows and
+                     CRM processes."
+                  </p>
+               </div>
+               <div class="block">
+                  <p class="label">Ask them</p>
+                  <p class="probe">
+                     Which repetitive business process takes the most manual
+                     effort today?
+                  </p>
+               </div>
+            </div>
+            <div
+               class="card"
+               data-text="power automate sharepoint dynamics cross system"
+            >
+               <div class="card-top">
+                  <p class="cat">Cross-System Automation</p>
+                  <span class="badge aligned">#</span>
+               </div>
+               <h2>Automating processes across Microsoft systems</h2>
+               <div class="block">
+                  <p class="label">They might say</p>
+                  <p class="trigger">
+                     "Our process starts in one Microsoft application and then
+                     someone manually updates another."
+                  </p>
+               </div>
+               <div class="block">
+                  <p class="label">Pitch line</p>
+                  <p class="pitch">
+                     "We can automate cross-system processes across SharePoint,
+                     Dynamics 365 and the Power Platform."
+                  </p>
+               </div>
+               <div class="block">
+                  <p class="label">Ask them</p>
+                  <p class="probe">
+                     Which business process requires people to copy information
+                     between systems?
+                  </p>
+               </div>
+            </div>
+            <div
+               class="card"
+               data-text="power bi dashboards kpi analytics sales reporting"
+            >
+               <div class="card-top">
+                  <p class="cat">Power BI</p>
+                  <span class="badge aligned">#</span>
+               </div>
+               <h2>Management KPI dashboards</h2>
+               <div class="block">
+                  <p class="label">They might say</p>
+                  <p class="trigger">
+                     "Management needs reports from CRM and operational systems
+                     but relies on manual Excel reporting."
+                  </p>
+               </div>
+               <div class="block">
+                  <p class="label">Pitch line</p>
+                  <p class="pitch">
+                     "We can build Power BI dashboards for CRM analytics, sales
+                     reporting, operational reporting and KPIs."
+                  </p>
+               </div>
+               <div class="block">
+                  <p class="label">Ask them</p>
+                  <p class="probe">
+                     Which KPIs does management need to see regularly?
+                  </p>
+               </div>
+            </div>
+            <div
+               class="card"
+               data-text="dynamics sharepoint integration documents contracts"
+            >
+               <div class="card-top">
+                  <p class="cat">CRM + SharePoint</p>
+                  <span class="badge aligned">#</span>
+               </div>
+               <h2>Connecting CRM records with documents</h2>
+               <div class="block">
+                  <p class="label">They might say</p>
+                  <p class="trigger">
+                     "Sales has customer data in Dynamics but customer documents
+                     are stored somewhere else."
+                  </p>
+               </div>
+               <div class="block">
+                  <p class="label">Pitch line</p>
+                  <p class="pitch">
+                     "We can combine Dynamics 365 for customer and sales data
+                     with SharePoint for contracts and supporting documents."
+                  </p>
+               </div>
+               <div class="block">
+                  <p class="label">Ask them</p>
+                  <p class="probe">
+                     Where are documents for customers and opportunities stored
+                     today?
+                  </p>
+               </div>
+            </div>
+            <div
+               class="card"
+               data-text="dynamics power automate approvals notifications"
+            >
+               <div class="card-top">
+                  <p class="cat">CRM + Workflow</p>
+                  <span class="badge aligned">#</span>
+               </div>
+               <h2>Automating CRM approvals and notifications</h2>
+               <div class="block">
+                  <p class="label">They might say</p>
+                  <p class="trigger">
+                     "CRM users manually send emails when something needs
+                     approval or action."
+                  </p>
+               </div>
+               <div class="block">
+                  <p class="label">Pitch line</p>
+                  <p class="pitch">
+                     "We can use Power Automate to connect Dynamics 365 events
+                     with approvals, notifications and business workflows."
+                  </p>
+               </div>
+               <div class="block">
+                  <p class="label">Ask them</p>
+                  <p class="probe">
+                     Which CRM events currently trigger manual emails or
+                     approval requests?
+                  </p>
+               </div>
+            </div>
+            <div class="card" data-text="dynamics power bi crm analytics">
+               <div class="card-top">
+                  <p class="cat">CRM + Power BI</p>
+                  <span class="badge aligned">#</span>
+               </div>
+               <h2>Turning CRM data into management insight</h2>
+               <div class="block">
+                  <p class="label">They might say</p>
+                  <p class="trigger">
+                     "We have CRM data but management doesn&#x27;t have useful
+                     dashboards."
+                  </p>
+               </div>
+               <div class="block">
+                  <p class="label">Pitch line</p>
+                  <p class="pitch">
+                     "We can connect Dynamics 365 data with Power BI to provide
+                     sales, customer and operational reporting."
+                  </p>
+               </div>
+               <div class="block">
+                  <p class="label">Ask them</p>
+                  <p class="probe">
+                     What questions does management want the CRM data to answer?
+                  </p>
+               </div>
+            </div>
+            <div
+               class="card"
+               data-text="sharepoint microsoft 365 graph integration"
+            >
+               <div class="card-top">
+                  <p class="cat">M365 Integration</p>
+                  <span class="badge aligned">#</span>
+               </div>
+               <h2>Extending SharePoint across Microsoft 365</h2>
+               <div class="block">
+                  <p class="label">They might say</p>
+                  <p class="trigger">
+                     "We want our SharePoint solution to work naturally with the
+                     rest of Microsoft 365."
+                  </p>
+               </div>
+               <div class="block">
+                  <p class="label">Pitch line</p>
+                  <p class="pitch">
+                     "We can integrate SharePoint solutions with Microsoft 365
+                     services and Microsoft Graph where the business requirement
+                     calls for it."
+                  </p>
+               </div>
+               <div class="block">
+                  <p class="label">Ask them</p>
+                  <p class="probe">
+                     Which Microsoft 365 applications need to work with your
+                     SharePoint solution?
+                  </p>
+               </div>
+            </div>
+            <div
+               class="card"
+               data-text="sharepoint modernization legacy web parts"
+            >
+               <div class="card-top">
+                  <p class="cat">Modernization</p>
+                  <span class="badge aligned">#</span>
+               </div>
+               <h2>Modernizing existing SharePoint solutions</h2>
+               <div class="block">
+                  <p class="label">They might say</p>
+                  <p class="trigger">
+                     "Our SharePoint solution is old and difficult to maintain."
+                  </p>
+               </div>
+               <div class="block">
+                  <p class="label">Pitch line</p>
+                  <p class="pitch">
+                     "We can review and modernize existing SharePoint solutions,
+                     web parts and business experiences."
+                  </p>
+               </div>
+               <div class="block">
+                  <p class="label">Ask them</p>
+                  <p class="probe">
+                     How old is your SharePoint solution and what parts are
+                     difficult to maintain?
+                  </p>
+               </div>
+            </div>
+            <div
+               class="card"
+               data-text="sharepoint power apps power automate spreadsheets"
+            >
+               <div class="card-top">
+                  <p class="cat">Portal Modernization</p>
+                  <span class="badge common">COMMON</span>
+               </div>
+               <h2>Replacing spreadsheet-driven internal processes</h2>
+               <div class="block">
+                  <p class="label">They might say</p>
+                  <p class="trigger">
+                     "Departments still manage internal processes through Excel
+                     and email."
+                  </p>
+               </div>
+               <div class="block">
+                  <p class="label">Pitch line</p>
+                  <p class="pitch">
+                     "We can assess whether SharePoint, Power Apps and Power
+                     Automate can turn those manual processes into structured
+                     business applications."
+                  </p>
+               </div>
+               <div class="block">
+                  <p class="label">Ask them</p>
+                  <p class="probe">
+                     Which departmental processes still depend heavily on Excel
+                     and email?
+                  </p>
+               </div>
+            </div>
+            <div
+               class="card"
+               data-text="dynamics sharepoint power automate power bi architecture"
+            >
+               <div class="card-top">
+                  <p class="cat">End-to-End Microsoft Solution</p>
+                  <span class="badge aligned">#</span>
+               </div>
+               <h2>Connecting CRM, documents, automation and reporting</h2>
+               <div class="block">
+                  <p class="label">They might say</p>
+                  <p class="trigger">
+                     "Our customer data, documents, workflows and reports are
+                     all handled separately."
+                  </p>
+               </div>
+               <div class="block">
+                  <p class="label">Pitch line</p>
+                  <p class="pitch">
+                     "We can design an integrated Microsoft business solution
+                     where Dynamics manages customer data, SharePoint manages
+                     documents, Power Automate handles workflows and Power BI
+                     provides reporting."
+                  </p>
+               </div>
+               <div class="block">
+                  <p class="label">Ask them</p>
+                  <p class="probe">
+                     Which parts of the customer process are currently handled
+                     in separate systems?
+                  </p>
+               </div>
+            </div>
+            <div
+               class="card"
+               data-text="alm dev uat production deployment governance"
+            >
+               <div class="card-top">
+                  <p class="cat">ALM &amp; Governance</p>
+                  <span class="badge aligned">#</span>
+               </div>
+               <h2>Establishing a controlled application lifecycle</h2>
+               <div class="block">
+                  <p class="label">They might say</p>
+                  <p class="trigger">
+                     "We have development work but changes are difficult to test
+                     and release safely."
+                  </p>
+               </div>
+               <div class="block">
+                  <p class="label">Pitch line</p>
+                  <p class="pitch">
+                     "We can support requirement analysis, solution
+                     architecture, development, integration, UAT, production
+                     deployment and ongoing enhancement."
+                  </p>
+               </div>
+               <div class="block">
+                  <p class="label">Ask them</p>
+                  <p class="probe">
+                     Do you have a defined process from development through UAT
+                     to production?
+                  </p>
+               </div>
+            </div>
+            <div
+               class="card"
+               data-text="managed support maintenance sharepoint dynamics power platform"
+            >
+               <div class="card-top">
+                  <p class="cat">Managed Support</p>
+                  <span class="badge aligned">#</span>
+               </div>
+               <h2>Ongoing Microsoft business application support</h2>
+               <div class="block">
+                  <p class="label">They might say</p>
+                  <p class="trigger">
+                     "We don&#x27;t need a full-time team, but we need regular
+                     help with our Microsoft applications."
+                  </p>
+               </div>
+               <div class="block">
+                  <p class="label">Pitch line</p>
+                  <p class="pitch">
+                     "We can provide ongoing support and enhancement across
+                     SharePoint, Dynamics 365, Power Platform and related
+                     business applications."
+                  </p>
+               </div>
+               <div class="block">
+                  <p class="label">Ask them</p>
+                  <p class="probe">
+                     Do you have a backlog of fixes, enhancements or
+                     administration tasks?
+                  </p>
+               </div>
+            </div>
+            <div
+               class="card"
+               data-text="ai copilot microsoft dynamics sharepoint power platform"
+            >
+               <div class="card-top">
+                  <p class="cat">AI &amp; Copilot</p>
+                  <span class="badge trending">TRENDING</span>
+               </div>
+               <h2>
+                  Exploring AI opportunities across Microsoft business
+                  applications
+               </h2>
+               <div class="block">
+                  <p class="label">They might say</p>
+                  <p class="trigger">
+                     "We want to use AI to make our Microsoft business processes
+                     more productive."
+                  </p>
+               </div>
+               <div class="block">
+                  <p class="label">Pitch line</p>
+                  <p class="pitch">
+                     "We can assess where AI-assisted experiences could improve
+                     CRM, document, workflow and reporting processes within your
+                     Microsoft ecosystem."
+                  </p>
+               </div>
+               <div class="block">
+                  <p class="label">Ask them</p>
+                  <p class="probe">
+                     Which repetitive knowledge or customer-service tasks would
+                     you most like AI to reduce?
+                  </p>
+               </div>
+            </div>
+            <div
+               class="card"
+               data-text="copilot studio agents ai assistant microsoft"
+            >
+               <div class="card-top">
+                  <p class="cat">Copilot Studio</p>
+                  <span class="badge trending">TRENDING</span>
+               </div>
+               <h2>Building AI-assisted business agents</h2>
+               <div class="block">
+                  <p class="label">They might say</p>
+                  <p class="trigger">
+                     "We want an AI assistant that can answer questions or help
+                     employees with business processes."
+                  </p>
+               </div>
+               <div class="block">
+                  <p class="label">Pitch line</p>
+                  <p class="pitch">
+                     "We can assess agent-based opportunities across the
+                     Microsoft business application ecosystem and identify
+                     practical use cases."
+                  </p>
+               </div>
+               <div class="block">
+                  <p class="label">Ask them</p>
+                  <p class="probe">
+                     What questions or routine business tasks could an internal
+                     AI assistant handle?
+                  </p>
+               </div>
+            </div>
+            <div
+               class="card"
+               data-text="power platform modernization power apps automate bi"
+            >
+               <div class="card-top">
+                  <p class="cat">Power Platform Modernization</p>
+                  <span class="badge trending">TRENDING</span>
+               </div>
+               <h2>
+                  Modernizing manual business processes with Power Platform
+               </h2>
+               <div class="block">
+                  <p class="label">They might say</p>
+                  <p class="trigger">
+                     "We have many small business processes managed through
+                     Excel, email and disconnected tools."
+                  </p>
+               </div>
+               <div class="block">
+                  <p class="label">Pitch line</p>
+                  <p class="pitch">
+                     
+                  </p>
+               </div>
+               <div class="block">
+                  <p class="label">Ask them</p>
+                  <p class="probe">
+                     Which manual processes would you most like to digitize
+                     first?
+                  </p>
+               </div>
+            </div>
+         </div>
+         <footer>
+            Internal BD reference · Based primarily on the supplied Microsoft
+            SharePoint & Dynamics 365 CRM Capability Profile. TRENDING cards are
+            adjacent market opportunities and should be technically validated
+            before commercial commitment.
+         </footer>
+      </div>
+      <script>
+         function filterCards() {
+            const q = document
+                  .getElementById("search")
+                  .value.trim()
+                  .toLowerCase(),
+               c = document.querySelectorAll(".card");
+            let n = 0;
+            c.forEach((x) => {
+               const m =
+                  !q ||
+                  x.dataset.text.includes(q) ||
+                  x.innerText.toLowerCase().includes(q);
+               x.classList.toggle("hidden", !m);
+               if (m) n++;
+            });
+            document.getElementById("count").textContent = q
+               ? n + " of " + c.length + " shown"
+               : c.length + " cards";
+         }
+      </script>
+   </body>
+</html>
